@@ -1,0 +1,98 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    /* border: 1px solid blue; */
+}
+
+html {
+    font-size: 1em;
+    min-width: 360px;
+}
+
+body {
+    padding: 20px;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    /* gap: 5px; */
+    flex-direction: column;
+    padding: 16px;
+    max-width: 360px;
+    background-color: rgb(178, 204, 233);
+    margin: 50px auto;
+    box-shadow: 4px 2px 6px grey;
+    border-radius: 6px;
+}
+
+.top {
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+/* label, */
+select {
+    border-radius: 4px;
+    font-size: 13px;
+    padding: 0 10px;
+}
+
+.screen {
+    background-color: azure;
+    font-family: monospace;
+    border: 2px solid;
+    padding: 5px;
+}
+
+input {
+    width: 100%;
+    border: none;
+    background-color: inherit;
+    font-family: inherit;
+    padding: 4px;
+}
+
+.output {
+    text-align: right;
+    font-size: 3em;
+}
+
+.keygroup {
+    display: flex;
+    gap: 10px;
+    background-color: rgba(141, 135, 135, 0.39);
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+}
+
+.keys {
+    display: flex;
+    flex-flow: row-reverse wrap;
+    flex: 1 auto;
+    gap: 5px;
+}
+
+button {
+    flex: 1 50px;
+    font-size: 1.5em;
+    font-family: monospace;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: rgba(65, 65, 250, 0.753);
+}
+
+.operator>button:hover {
+    background-color: yellow;
+}
+
+button[type="submit"]:hover {
+    background-color: rgba(96, 255, 4, 0.781);
+}
