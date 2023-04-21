@@ -1,11 +1,7 @@
 const select = document.querySelector('select');
-const number_keys = document.querySelector('div.number.keys');
-const form = document.querySelector('form');
+const number_keys = document.querySelector('.number');
 const input = document.querySelector('input');
 const output = document.querySelector('output');
-generateNumberKeys();
-const calc_keys = document.querySelectorAll('.keygroup button[type=button]');
-const [ce, clr] = document.querySelectorAll('.clear button');
 
 // generate base selection options
 for (let i = 2; i <= 16; i++) {
@@ -15,41 +11,41 @@ for (let i = 2; i <= 16; i++) {
     select.append(option);
 }
 
+// generate number buttons
+for (let i = 15; i >= 0; i--) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.innerHTML = i.toString(16).toUpperCase();
+    number_keys.append(button);
+    button.style.display = 'none';
+}
+
 select.value = 10; showNumberKeys(10);
+let operating_base = 10;
 clearCalculation();
 
 select.addEventListener('change', () => {
     showNumberKeys(select.value);
-    // todo - convert result to new base
+    output.textContent = baseXtoY(output.textContent, operating_base, select.value);
+    operating_base = select.value;
 })
 
-form.addEventListener('submit', (e) => {
+document.querySelector('form').addEventListener('submit', (e) => {
     e.preventDefault();
     calculateNow();
 })
 
-calc_keys.forEach(button => {
+document.querySelectorAll('.keygroup button[type=button]').forEach(button => {
     button.addEventListener('click', appendToInput);
 })
 
-clr.addEventListener('click', clearCalculation);
-ce.addEventListener('click', clearEntry);
+document.querySelectorAll('.clear button')[1].addEventListener('click', clearCalculation);
+document.querySelectorAll('.clear button')[0].addEventListener('click', clearEntry);
 
 function showNumberKeys(base) {
     number_keys.childNodes.forEach(button => button.style.display = 'block');
     for (let i = 0; i < 16 - base; i++) {
         number_keys.childNodes[i].style.display = 'none';
-    }
-}
-
-/**Generate 16 number keys in reverse (15,14,13,...,0) */
-function generateNumberKeys() {
-    for (let i = 15; i >= 0; i--) {
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.innerHTML = i.toString(16).toUpperCase();
-        number_keys.append(button);
-        button.style.display = 'none';
     }
 }
 
@@ -65,7 +61,7 @@ function clearEntry() {
 
 function calculateNow() {
     try {
-        output.textContent = eval(input.value);
+        output.textContent = baseXtoY(eval(input.value), operating_base, select.value);
     } catch (error) {
         output.textContent = 'Error';
     }
@@ -73,4 +69,8 @@ function calculateNow() {
 
 function appendToInput() {
     input.value += this.innerHTML;
+}
+
+function baseXtoY(n, x, y) {
+    return parseInt(n.toString(), x).toString(y);
 }
