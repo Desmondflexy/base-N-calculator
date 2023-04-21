@@ -29,14 +29,15 @@ form {
     margin: 50px auto;
     box-shadow: 4px 2px 6px grey;
     border-radius: 6px;
+    font-family: monospace;
 }
 
 .top {
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
     padding-bottom: 5px;
 }
 
-/* label, */
 select {
     border-radius: 4px;
     font-size: 13px;
@@ -45,7 +46,6 @@ select {
 
 .screen {
     background-color: azure;
-    font-family: monospace;
     border: 2px solid;
     padding: 5px;
 }
@@ -71,7 +71,7 @@ input {
     border-radius: 0 0 5px 5px;
 }
 
-.keys {
+.keygroup>div {
     display: flex;
     flex-flow: row-reverse wrap;
     flex: 1 auto;
@@ -81,18 +81,26 @@ input {
 button {
     flex: 1 50px;
     font-size: 1.5em;
-    font-family: monospace;
+    font-family: inherit;
     border-radius: 5px;
 }
 
-button:hover {
-    background-color: rgba(65, 65, 250, 0.753);
+.clear button {
+    font-size: 14px;
+    width: 40px;
+    color: #fff;
+    background-color: rgb(172, 2, 2);
 }
 
-.operator>button:hover {
+.number button {
+    background-color: rgb(3, 3, 145);
+    color: #fff;
+}
+
+.operator button {
     background-color: yellow;
 }
 
-button[type="submit"]:hover {
-    background-color: rgba(96, 255, 4, 0.781);
+button[type="submit"] {
+    background-color: rgb(96, 255, 4);
 }
