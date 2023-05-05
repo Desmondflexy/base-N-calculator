@@ -2,9 +2,10 @@ const select = document.querySelector('select');
 const number_keys = document.querySelector('.number');
 const input = document.querySelector('input');
 const output = document.querySelector('output');
+const baseMax = 16;
 
 // generate base selection options
-for (let i = 2; i <= 16; i++) {
+for (let i = 2; i <= baseMax; i++) {
     const option = document.createElement('option');
     option.innerHTML = `Base-${i}`
     option.value = i;
@@ -12,21 +13,21 @@ for (let i = 2; i <= 16; i++) {
 }
 
 // generate number buttons
-for (let i = 15; i >= 0; i--) {
+for (let i = baseMax - 1; i >= 0; i--) {
     const button = document.createElement('button');
     button.type = 'button';
-    button.innerHTML = i.toString(16).toUpperCase();
+    button.innerHTML = i.toString(baseMax).toUpperCase();
     number_keys.append(button);
     button.style.display = 'none';
 }
 
-select.value = 10; showNumberKeys(10);
-let operating_base = 10;
+select.value = 10; showNumberKeys(select.value);
+let operating_base = select.value;
 clearCalculation();
 
 select.addEventListener('change', () => {
     showNumberKeys(select.value);
-    output.textContent = baseXtoY(output.textContent, operating_base, select.value);
+    // output.textContent = baseXtoY(output.textContent, operating_base, select.value);
     operating_base = select.value;
 })
 
@@ -44,7 +45,7 @@ document.querySelectorAll('.clear button')[0].addEventListener('click', clearEnt
 
 function showNumberKeys(base) {
     number_keys.childNodes.forEach(button => button.style.display = 'block');
-    for (let i = 0; i < 16 - base; i++) {
+    for (let i = 0; i < baseMax - base; i++) {
         number_keys.childNodes[i].style.display = 'none';
     }
 }
@@ -61,7 +62,7 @@ function clearEntry() {
 
 function calculateNow() {
     try {
-        output.textContent = baseXtoY(eval(input.value), operating_base, select.value);
+        output.textContent = eval(input.value);
     } catch (error) {
         output.textContent = 'Error';
     }

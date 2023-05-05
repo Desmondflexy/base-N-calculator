@@ -24,7 +24,7 @@ form {
     flex-direction: column;
     padding: 16px;
     max-width: 360px;
-    background-color: rgb(178, 204, 233);
+    background-color: rgb(208, 178, 233);
     margin: 50px auto;
     box-shadow: 4px 2px 6px grey;
     border-radius: 6px;
@@ -34,6 +34,7 @@ form {
 .top {
     display: flex;
     justify-content: space-between;
+    /* align-items: flex-start; */
     padding-bottom: 5px;
 }
 
@@ -67,7 +68,7 @@ output {
 .keygroup {
     display: flex;
     gap: 10px;
-    background-color: rgba(141, 135, 135, 0.39);
+    background-color: rgba(141, 135, 135, 0.555);
     padding: 10px;
     border-radius: 0 0 5px 5px;
 }
@@ -83,7 +84,12 @@ button {
     flex: 1 50px;
     font-size: 1.5em;
     font-family: inherit;
+    /* font-weight: bold; */
     border-radius: 5px;
+}
+
+button:hover {
+    box-shadow: 0 0 8px #000;
 }
 
 .clear button {
@@ -104,8 +110,4 @@ button {
 
 button[type="submit"] {
     background-color: rgb(96, 255, 4);
-}
-
-button:hover{
-    box-shadow: 0 0 8px #000;
 }
